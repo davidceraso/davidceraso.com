@@ -3,11 +3,47 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>David Ceraso</title>
+    <meta name="description" content="David Ceraso is a creative based in New York City – currently working as a Design Manager for The Walt Disney Company.">
+    <meta name="author" content="David Ceraso">
+    <meta name="keywords" content="David Ceraso, Design Manager, Walt Disney Company, Creative, New York City, NYC, Designer">
+    <meta name="robots" content="index, follow">
+    
+    <!-- Open Graph / Social Media -->
+    <meta property="og:type" content="website">
+    <meta property="og:title" content="David Ceraso – Design Manager">
+    <meta property="og:description" content="David Ceraso is a creative based in New York City – currently working as a Design Manager for The Walt Disney Company.">
+    <meta property="og:site_name" content="David Ceraso">
+    
+    <!-- Twitter Card -->
+    <meta name="twitter:card" content="summary">
+    <meta name="twitter:title" content="David Ceraso – Design Manager">
+    <meta name="twitter:description" content="David Ceraso is a creative based in New York City – currently working as a Design Manager for The Walt Disney Company.">
+    
+    <title>David Ceraso – Design Manager | The Walt Disney Company</title>
+    <link rel="canonical" href="https://davidceraso.com">
     <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><circle cx='50' cy='50' r='26' fill='%230000FF'/></svg>">
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500&display=swap" rel="stylesheet">
+    
+    <!-- Structured Data -->
+    <script type="application/ld+json">
+    {
+        "@context": "https://schema.org",
+        "@type": "Person",
+        "name": "David Ceraso",
+        "jobTitle": "Design Manager",
+        "worksFor": {
+            "@type": "Organization",
+            "name": "The Walt Disney Company"
+        },
+        "address": {
+            "@type": "PostalAddress",
+            "addressLocality": "New York City",
+            "addressRegion": "NY",
+            "addressCountry": "US"
+        },
+        "email": "david.ceraso@gmail.com",
+        "url": "https://davidceraso.com"
+    }
+    </script>
     <style>
         * {
             margin: 0;
@@ -16,58 +52,225 @@
         }
 
         body {
-            font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
             background: #ffffff;
-            color: #000000;
             min-height: 100vh;
-            padding: 2rem;
+            overflow: hidden;
         }
 
-        .container {
-            max-width: 800px;
+        #plasma {
+            position: fixed;
+            top: 0;
+            left: 0;
             width: 100%;
+            height: 100%;
+            font-family: 'Courier New', monospace;
+            font-size: 14px;
+            line-height: 16px;
+            letter-spacing: 0;
+            white-space: pre;
+            overflow: hidden;
+            background: #fff;
+            z-index: 1;
         }
 
-        p {
-            font-size: clamp(1.125rem, 4vw, 1.5rem);
-            line-height: 1.6;
-            font-weight: 400;
-            margin-bottom: 2rem;
+        #text-overlay {
+            position: fixed;
+            z-index: 10;
+            font-family: 'Courier New', monospace;
+            font-size: 14px;
+            line-height: 16px;
+            color: transparent;
+            pointer-events: auto;
+            user-select: text;
+            -webkit-user-select: text;
         }
 
-        a {
+        #text-overlay p {
+            margin: 0;
+        }
+
+        #text-overlay p:last-child {
+            margin-top: 16px;
+        }
+
+        #text-overlay *::selection,
+        #text-overlay::selection {
+            background: rgba(0, 0, 255, 0.3);
             color: #0000FF;
+        }
+
+        #text-overlay a {
+            color: transparent;
             text-decoration: none;
-            font-size: clamp(1.125rem, 4vw, 1.5rem);
-            font-weight: 400;
-            word-break: break-word;
+            cursor: pointer;
         }
 
-        a:hover {
-            text-decoration: underline;
-        }
-
-        @media (max-width: 768px) {
-            body {
-                padding: 1.5rem;
-            }
-        }
-
-        @media (max-width: 480px) {
-            body {
-                padding: 1.25rem;
-            }
-
-            p {
-                margin-bottom: 1.5rem;
-            }
+        #text-overlay a::selection {
+            color: #0000FF;
         }
     </style>
 </head>
 <body>
-    <div class="container">
-        <p>David Ceraso is a creative based in New York City. David is currently working as a Design Manager for the Walt Disney Company.</p>
-        <a href="mailto:david.ceraso@gmail.com">david.ceraso@gmail.com</a>
-    </div>
+    <div id="plasma"></div>
+    <main id="text-overlay">
+        <p>David Ceraso is a creative based in New York City – currently working as a Design Manager for The Walt Disney Company.</p>
+        <p><a href="mailto:david.ceraso@gmail.com">david.ceraso@gmail.com</a></p>
+    </main>
+
+    <script>
+        const plasma = document.getElementById('plasma');
+        const chars = ' .:-=+*#%@';
+        
+        let cols, rows;
+        let time = 0;
+        
+        // Text content (must match HTML)
+        const bioText = 'David Ceraso is a creative based in New York City – currently working as a Design Manager for The Walt Disney Company.';
+        const emailText = 'david.ceraso@gmail.com';
+        
+        // Text position settings
+        const textStartX = 3;
+        const textStartY = 3;
+        const textPadding = 3;
+        
+        // Text map for plasma rendering
+        let textMap = {};
+        let wrappedLines = [];
+        let emailLineY = 0;
+        
+        function wrapText(text, maxWidth) {
+            const words = text.split(' ');
+            const lines = [];
+            let currentLine = '';
+            
+            for (const word of words) {
+                const testLine = currentLine ? currentLine + ' ' + word : word;
+                if (testLine.length <= maxWidth) {
+                    currentLine = testLine;
+                } else {
+                    if (currentLine) lines.push(currentLine);
+                    currentLine = word;
+                }
+            }
+            if (currentLine) lines.push(currentLine);
+            return lines;
+        }
+        
+        function buildTextMap() {
+            textMap = {};
+            const maxWidth = cols - textStartX - textPadding;
+            
+            // Wrap bio text
+            wrappedLines = wrapText(bioText, maxWidth);
+            
+            // Add bio lines to map
+            for (let lineIdx = 0; lineIdx < wrappedLines.length; lineIdx++) {
+                const line = wrappedLines[lineIdx];
+                for (let charIdx = 0; charIdx < line.length; charIdx++) {
+                    const x = textStartX + charIdx;
+                    const y = textStartY + lineIdx;
+                    const key = `${x},${y}`;
+                    textMap[key] = line[charIdx];
+                }
+            }
+            
+            // Add blank line then email
+            emailLineY = textStartY + wrappedLines.length + 1;
+            for (let charIdx = 0; charIdx < emailText.length; charIdx++) {
+                const x = textStartX + charIdx;
+                const key = `${x},${emailLineY}`;
+                textMap[key] = emailText[charIdx];
+            }
+        }
+        
+        // Color palette - pure blue tones only (#0000FF variations)
+        const palette = [];
+        for (let i = 0; i < 256; i++) {
+            const b = Math.floor(40 + 215 * Math.sin(Math.PI * i / 256));
+            palette.push(`rgb(0,0,${b})`);
+        }
+
+        const charWidth = 8.4;
+        const charHeight = 16;
+        
+        function calculateSize() {
+            cols = Math.ceil(window.innerWidth / charWidth) + 2;
+            rows = Math.ceil(window.innerHeight / charHeight) + 2;
+        }
+        
+        function updateTextOverlay() {
+            const overlay = document.getElementById('text-overlay');
+            const x = textStartX * charWidth;
+            const y = textStartY * charHeight;
+            
+            overlay.style.left = x + 'px';
+            overlay.style.top = y + 'px';
+            
+            // Set max width to match plasma text wrapping
+            const maxWidth = cols - textStartX - textPadding;
+            overlay.style.maxWidth = (maxWidth * charWidth) + 'px';
+        }
+
+        function plasmaValue(x, y, t) {
+            let v = 0;
+            v += Math.sin(x * 0.1 + t);
+            const cx = cols / 2;
+            const cy = rows / 2;
+            const dx = x - cx;
+            const dy = y - cy;
+            const dist = Math.sqrt(dx * dx + dy * dy);
+            v += Math.sin(dist * 0.1 - t * 0.7);
+            v += Math.sin((x * 0.05 + y * 0.05) + t * 0.5);
+            v += Math.sin(Math.sqrt((x - cols * 0.3) ** 2 + (y - rows * 0.7) ** 2) * 0.12 + t * 0.8);
+            return (v + 4) / 8;
+        }
+
+        function render() {
+            let output = '';
+            
+            for (let y = 0; y < rows; y++) {
+                let row = '';
+                for (let x = 0; x < cols; x++) {
+                    const v = plasmaValue(x, y, time);
+                    const colorIndex = Math.floor(v * 255);
+                    const color = palette[colorIndex];
+                    
+                    // Check if this position has text
+                    const key = `${x},${y}`;
+                    let char;
+                    let charColor;
+                    if (textMap[key]) {
+                        char = textMap[key];
+                        charColor = '#0000FF';
+                    } else {
+                        const charIndex = Math.floor(v * (chars.length - 1));
+                        char = chars[charIndex];
+                        charColor = color;
+                    }
+                    
+                    row += `<span style="color:${charColor}">${char}</span>`;
+                }
+                output += row + '\n';
+            }
+            
+            plasma.innerHTML = output;
+            time += 0.005;
+            requestAnimationFrame(render);
+        }
+
+        function init() {
+            calculateSize();
+            buildTextMap();
+            updateTextOverlay();
+            render();
+        }
+
+        window.addEventListener('resize', () => {
+            calculateSize();
+            buildTextMap();
+            updateTextOverlay();
+        });
+        init();
+    </script>
 </body>
 </html>
