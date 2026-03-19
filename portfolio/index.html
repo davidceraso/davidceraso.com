@@ -1,0 +1,197 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Portfolio – David Ceraso</title>
+    <meta name="robots" content="noindex, nofollow">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            background: #ffffff;
+            min-height: 100vh;
+            font-family: 'Courier New', monospace;
+            font-size: 14px;
+            line-height: 1.6;
+            color: #0000FF;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+
+        .password-form {
+            border: 1px solid #0000FF;
+            padding: 32px;
+            background: #fff;
+            max-width: 320px;
+            width: 100%;
+            margin: 24px;
+        }
+
+        .password-form h1 {
+            font-size: 14px;
+            font-weight: normal;
+            margin-bottom: 8px;
+        }
+
+        .password-form p {
+            font-size: 12px;
+            color: #666;
+            margin-bottom: 16px;
+        }
+
+        .password-form input {
+            width: 100%;
+            padding: 8px 12px;
+            font-family: 'Courier New', monospace;
+            font-size: 14px;
+            border: 1px solid #0000FF;
+            margin-bottom: 16px;
+            outline: none;
+        }
+
+        .password-form input:focus {
+            background: rgba(0, 0, 255, 0.05);
+        }
+
+        .password-form .form-actions {
+            display: flex;
+            gap: 12px;
+        }
+
+        .password-form button {
+            font-family: 'Courier New', monospace;
+            font-size: 12px;
+            padding: 8px 16px;
+            border: 1px solid #0000FF;
+            cursor: pointer;
+            transition: all 0.2s ease;
+            background: #0000FF;
+            color: #fff;
+        }
+
+        .password-form button:hover {
+            background: #0000cc;
+        }
+
+        .password-form .error {
+            color: #cc0000;
+            font-size: 12px;
+            margin-bottom: 16px;
+            display: none;
+        }
+
+        .back-link {
+            display: block;
+            margin-top: 16px;
+            color: #0000FF;
+            text-decoration: none;
+            font-size: 12px;
+        }
+
+        .back-link:hover {
+            text-decoration: underline;
+        }
+
+        .pdf-container {
+            display: none;
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+        }
+
+        .pdf-container iframe {
+            width: 100%;
+            height: 100%;
+            border: none;
+        }
+
+        ::selection {
+            background: rgba(0, 0, 255, 0.3);
+            color: #0000FF;
+        }
+    </style>
+</head>
+<body>
+    <form class="password-form" id="passwordForm">
+        <h1>Portfolio Review</h1>
+        <p>This content is password protected.</p>
+        <p class="error" id="passwordError">Incorrect password. Please try again.</p>
+        <input type="password" id="passwordInput" placeholder="Enter password" autocomplete="off" autofocus>
+        <div class="form-actions">
+            <button type="submit">Submit</button>
+        </div>
+        <a href="/" class="back-link">← Back to home</a>
+    </form>
+
+    <div class="pdf-container" id="pdfContainer"></div>
+
+    <script>
+        const PASSWORD_HASH = 'fcde242ae1f8e2afc85a96d';
+        const ENCRYPTED_PATH = 'AwQRARMLSxFWFFAAVRNTEEwFX1AWVxdNFQgW';
+
+        async function hashPassword(password) {
+            const encoder = new TextEncoder();
+            const data = encoder.encode(password);
+            const hashBuffer = await crypto.subtle.digest('SHA-256', data);
+            const hashArray = Array.from(new Uint8Array(hashBuffer));
+            const hashHex = hashArray.map(b => b.toString(16).padStart(2, '0')).join('');
+            return hashHex.substring(0, 23);
+        }
+
+        function decryptPath(password) {
+            try {
+                const encrypted = atob(ENCRYPTED_PATH);
+                let result = '';
+                for (let i = 0; i < encrypted.length; i++) {
+                    result += String.fromCharCode(encrypted.charCodeAt(i) ^ password.charCodeAt(i % password.length));
+                }
+                return result;
+            } catch (e) {
+                return null;
+            }
+        }
+
+        document.getElementById('passwordForm').addEventListener('submit', async (e) => {
+            e.preventDefault();
+            const password = document.getElementById('passwordInput').value;
+            const hash = await hashPassword(password);
+            
+            if (hash === PASSWORD_HASH) {
+                const path = decryptPath(password);
+                if (path && path.startsWith('secure/')) {
+                    sessionStorage.setItem('portfolio_auth', 'true');
+                    sessionStorage.setItem('portfolio_url', '/portfolio/' + path);
+                    
+                    document.querySelector('.password-form').style.display = 'none';
+                    const container = document.getElementById('pdfContainer');
+                    container.style.display = 'block';
+                    container.innerHTML = '<iframe src="/portfolio/' + path + '"></iframe>';
+                } else {
+                    document.getElementById('passwordError').style.display = 'block';
+                    document.getElementById('passwordInput').value = '';
+                    document.getElementById('passwordInput').focus();
+                }
+            } else {
+                document.getElementById('passwordError').style.display = 'block';
+                document.getElementById('passwordInput').value = '';
+                document.getElementById('passwordInput').focus();
+            }
+        });
+
+        if (sessionStorage.getItem('portfolio_auth') === 'true' && sessionStorage.getItem('portfolio_url')) {
+            document.querySelector('.password-form').style.display = 'none';
+            const container = document.getElementById('pdfContainer');
+            container.style.display = 'block';
+            container.innerHTML = '<iframe src="' + sessionStorage.getItem('portfolio_url') + '"></iframe>';
+        }
+    </script>
+</body>
+</html>
