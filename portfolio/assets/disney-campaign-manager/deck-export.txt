@@ -1,0 +1,876 @@
+David Ceraso – Portfolio Review
+Prepared for Neha Singh
+
+1 / Leadership Style2 / Executive Presence
+What You’ll Hear Today
+2
+
+3
+My Career
+2010
+2016
+2021
+
+4
+People Management
+2010
+2016
+2021
+2019
+(Lead Designer)
+
+5
+Leadership Change
+2010
+2016
+2021
+
+6
+Leadership Change
+2010
+2016
+2021
+
+7
+Leadership Style
+Michael Rawlins
+
+8
+Leadership Models
+Leader
+Management
+Individual Contributor
+Traditional Leadership
+Command and Control
+Customers
+Leader
+Management
+Individual Contributor
+Servant Leadership
+Develop and Support
+Customers
+
+9
+Servant Leadership
+Benefits
+Disadvantages
+Better Teamwork & Collaboration
+Positive Work Environment
+Reduced Turnover
+Companies are Agile
+Improved Innovation
+Strong Culture
+Accelerated Learning
+Future Leaders Prepared 
+
+Slower decision-making
+Blurred authority 
+Underperformance tolerance risk 
+Leader bandwidth strain
+Harder to scale
+Inconsistent execution
+Difficult in crisis moments
+Leader influence diluted
+
+
+10
+Strengths-Based Leadership
+
+11
+Philosophy
+A manager's role is to reach inside and release the unique talents into performance.
+Don’t try to change people. Focus on unlocking what makes them exceptional. One individual at a time.
+
+12
+A catalyst is a substance that speeds up a chemical reaction, or lowers the temperature/pressure needed for it, without being consumed in the process
+Leadership as creating the conditions where great work happens faster and more consistently.
+Catalysis
+
+13
+Question of Balance
+I believe a good leader makes decisions that work for the business without losing what’s right for the people building it in the process.
+What’s right for the customer?
+What’s right for the company?
+What’s right for the individual?
+
+14
+Invest time where it grows people, not just output
+Blend of the Best Parts
+Remove friction so people can do their best work
+Scale strengths instead of fixing weaknesses
+Design roles and work around individual strengths
+Lead with empathy to understand what people truly need
+Pay attention to what energizes vs. drains each person
+
+15
+My leadership style is grounded in a people-first approach. I serve each individual by building deep, authentic connections that allow me to truly understand what they do best, and I intentionally create the conditions for those strengths to drive meaningful impact.
+
+16
+Philosophy → Practice 
+Connection Evidence
+Zero attrition during high-change periods
+Strong trust through consistent 1:1s and coaching
+Designers step into expanded rolees, scope, and ownership
+Strategy Evidence
+Strengths mapped across a 8+ designer team
+Talent aligned to critical roadmap priorities
+P3s elevated into high-impact platform work
+Execution Evidence
+Strength-aligned ownership drives higher velocity
+High standards maintained without micromanagement
+Friction removed to enable focused, outcome-driven delivery
+
+17
+My Team
+
+18
+My “AFS” Scope
+
+19
+PITCH
+PLAN
+TRAFFIC
+Sales Channels
+CRM
+Audience Forecasting
+Planning & OMS
+Campaign Mgmt.
+Ad Decisioning
+Direct Sold
+Self-Service
+Programmatic
+Inventory
+Forecasting
+Platform
+(IFP)
+Order
+Management
+System
+(Atlas)
+Mission
+Control
+Ad Server
+Measurement
+Reporting
+Data
+Operational Data Store (ODS)
+Revenue, Billing
+PAY
+HARPS
+PAID
+My Product Scope
+
+20
+Disney Campaign Manager – Externalization 
+Case Study 2
+
+Executive Leadership OKRs
+Be CTV's Highest Yield Platform
+Be the Easiest Buying Platform to Transact With
+Generate the Industry's Greatest Value for Advertisers
+21
+
+Disney’s Competition
+Company
+DTC Inventory
+Ad Platform
+Global Ad Revenue
+22
+
+The Gap (Global Ad Revenue)
+$115B
+$35B
+$29B
+$13B
+$102B
+23
+
+How do we close the gap? How do we compete more directly and substantially with Meta, Amazon, Google?
+Problem Statement
+24
+
+25
+
+Type of Organization
+Enterprise
+Mid-Market Business
+Small Business 
+Number of Employees
+1000+ employees
+100-999 employees
+Up to 100 employees
+Annual Revenue
+More than $1 billion
+$50 million - $1 billion
+Up to $50 million
+Ex.
+Who Advertises With Us?
+26
+
+High Ads Expertise
+Low Ads Expertise
+123K accounts
+Example of not attractive 
+to pursue with minimal 
+lift and # accts.
+Enterprise
+365K accounts
+Living Room, 
+Mobile, Web
+SMB9.6M accounts
+Lightweight Interfaces 
+(e.g., Mobile, web)
+Mid–Market
+555k accounts
+Living Room, 
+Mobile, Web
+Under $300M Ad Spend
+Over $300M Ad Spend
+Where is there opportunity?
+27
+
+High Ads Expertise
+Low Ads Expertise
+123K accounts
+Example of not attractive 
+to pursue with minimal 
+lift and # accts.
+Enterprise
+365K accounts
+Living Room, 
+Mobile, Web
+SMB9.6M accounts
+Lightweight Interfaces 
+(e.g., Mobile, web)
+Mid–Market
+555k accountsThe top 17% of Mid-Market advertisers drive 50% of net total revenues
+Under $300M Ad Spend
+Over $300M Ad Spend
+Where is there opportunity?
+28
+
+Example Companies
+Primary Needs
+Efficient Upstart
+Creative Composition Tooling
+Advanced targeting (e.g., behavioral segments)
+‘Live’ performance reporting, insights
+Experienced Optimizer
+Incrementality across channels (e.g., proof via MMM or MTA)
+Clean rooms for buying
+
+Advanced reporting/data exporting
+Brand Builder
+Audience creation/reach
+Creative Composition / Optimization Tooling
+Insights/support (new to video channels)
+Incumbent Regional Brand
+Local market targeting (both on geo and loyalty data)
+Relevance in local market
+Plugins for agency reporting solutions (or agency use of reporting)
+Incumbent National Brand
+Audience reach
+Exclusive placements
+Agency data plugins for cross channel measurement
+Clean rooms for buying
+Mid-Market Advertiser Needs
+29
+
+Theme: Publisher-Controlled → Advertiser-Controlled
+Advanced reporting / data exporting
+Cross-channel measurement plugins
+“Live” performance reporting
+Insights / support
+
+Advanced targeting (behavioral segments)
+Audience creation
+1P data activation inside the platform
+Direct control over geo + loyalty targeting
+Creative composition tooling
+“Off-the-shelf” recommendations
+Collaboration on campaign strategy
+Immediate budget and creative adjustments
+Access to Measurement & Performance
+Audience Targeting Controls & Reach
+Creative & Optimization Tooling
+30
+
+We must transform from a managed media seller into an advertiser-controlled growth platform.
+We must transfer power, control, data, and optimization directly to the advertiser.
+Hypothesis
+31
+
+User Journeys
+Small-Medium
+Mid-Market
+Enterprise
+32
+
+33
+
+34
+PITCH
+PLAN
+TRAFFIC
+Sales Channels
+CRM
+Audience Forecasting
+Planning & OMS
+Campaign Mgmt.
+Ad Decisioning
+Direct Sold
+Self-Service
+Programmatic
+Inventory
+Forecasting
+Platform
+(IFP)
+Order
+Management
+System
+(Atlas)
+Mission
+Control
+Ad Server
+Measurement
+Reporting
+Data
+Operational Data Store (ODS)
+Revenue, Billing
+PAY
+HARPS
+PAID
+
+35
+PITCH
+PLAN
+TRAFFIC
+Sales Channels
+CRM
+Audience Forecasting
+Planning & OMS
+Campaign Mgmt.
+Ad Decisioning
+Direct Sold
+Self-Service
+Programmatic
+Inventory
+Forecasting
+Platform
+(IFP)
+Order
+Management
+System
+(Atlas)
+Mission
+Control
+Ad Server
+Measurement
+Reporting
+Data
+Operational Data Store (ODS)
+Revenue, Billing
+PAY
+HARPS
+PAID
+Mid-Market Buys Self-Service
+
+Buying + Managing + Creation + Reporting – Unified
+Advertisers expect one destination for ads. 
+36
+
+Inefficiencies for Mid-Market
+37
+
+38
+PITCH
+PLAN
+TRAFFIC
+Sales Channels
+CRM
+Audience Forecasting
+Planning & OMS
+Campaign Mgmt.
+Ad Decisioning
+Direct Sold
+Self-Service
+Programmatic
+Inventory
+Forecasting
+Platform
+(IFP)
+Order
+Management
+System
+(Atlas)
+Mission
+Control
+Ad Server
+Measurement
+Reporting
+Data
+Operational Data Store (ODS)
+Revenue, Billing
+PAY
+HARPS
+PAID
+Enterprise Tooling (Disney Internal Facing)
+External Tooling (Customer Facing)
+
+39
+PITCH
+PLAN
+TRAFFIC
+Sales Channels
+CRM
+Audience Forecasting
+Planning & OMS
+Campaign Mgmt.
+Ad Decisioning
+Direct Sold
+Self-Service
+Programmatic
+Inventory
+Forecasting
+Platform
+(IFP)
+Order
+Management
+System
+(Atlas)
+Mission
+Control
+Ad Server
+Measurement
+Reporting
+Data
+Operational Data Store (ODS)
+Revenue, Billing
+PAY
+PAID
+HARPS
+Enterprise Tooling (Disney Internal Facing)
+External Tooling (Customer Facing)
+
+“Externalization”
+40
+
+41
+Externalization of “Managed” Service
+To achieve our aggressive goals and increase average mid-market spend, we must fully commit to transitioning traditional direct-sold workflows to DCM
+
+
+Parity Features
+Content Packaging & Merchandising
+Released: FY25 Q4
+Advanced Ads on DCM
+Released: FY25 Q3
+Introduce Desired Toolset to Mid-Market Buyers
+Disney eXperience Composer on DCM
+DXC on DCM Enablement
+Release: FY26 Q2
+Data Activation & Measurement
+Advanced Targeting
+& Audience Creation
+
+Release: FY26 Q3
+Self-Service Measurement and Data Onboarding
+Release: FY26 Q4
+Introduction of Advanced Targeting/Audience Creation, Interactive Creative Composition, and Creative Optimization will permit Objective Based Buying and unlock budgets
+
+
+Plan To Accelerate Mid-Market Ad Spend
+
+42
+PITCH
+PLAN
+TRAFFIC
+Sales Channels
+CRM
+Audience Forecasting
+Planning & OMS
+Campaign Mgmt.
+Ad Decisioning
+Direct Sold
+Self-Service
+Programmatic
+Inventory
+Forecasting
+Platform
+(IFP)
+Order
+Management
+System
+(Atlas)
+Mission
+Control
+Ad Server
+Measurement
+Reporting
+Data
+Operational Data Store (ODS)
+Revenue, Billing
+PAY
+HARPS
+PAID
+Enterprise Tooling (Disney Internal Facing)
+External Tooling (Customer Facing)
+
+43
+PITCH
+PLAN
+TRAFFIC
+Sales Channels
+CRM
+Audience Forecasting
+Planning & OMS
+Campaign Mgmt.
+Ad Decisioning
+Direct Sold
+Self-Service
+Programmatic
+Inventory
+Forecasting
+Platform
+(IFP)
+Order
+Management
+System
+(Atlas)
+Mission
+Control
+Ad Server
+Measurement
+Reporting
+Data
+Operational Data Store (ODS)
+Revenue, Billing
+PAY
+PAID
+HARPS
+Enterprise Tooling (Disney Internal Facing)
+External Tooling (Customer Facing)
+
+44
+Existing Internal Reporting
+
+45
+Existing Internal Reporting
+
+46
+Externalized Reporting
+
+47
+Externalized Reporting
+
+48
+PITCH
+PLAN
+TRAFFIC
+Sales Channels
+CRM
+Audience Forecasting
+Planning & OMS
+Campaign Mgmt.
+Ad Decisioning
+Direct Sold
+Self-Service
+Programmatic
+Inventory
+Forecasting
+Platform
+(IFP)
+Order
+Management
+System
+(Atlas)
+Mission
+Control
+Ad Server
+Measurement
+Reporting
+Data
+Operational Data Store (ODS)
+Revenue, Billing
+PAY
+HARPS
+PAID
+Enterprise Tooling (Disney Internal Facing)
+External Tooling (Customer Facing)
+
+49
+PITCH
+PLAN
+TRAFFIC
+Sales Channels
+CRM
+Audience Forecasting
+Planning & OMS
+Campaign Mgmt.
+Ad Decisioning
+Direct Sold
+Self-Service
+Programmatic
+Inventory
+Forecasting
+Platform
+(IFP)
+Order
+Management
+System
+(Atlas)
+Mission
+Control
+Ad Server
+Measurement
+Reporting
+Data
+Operational Data Store (ODS)
+Revenue, Billing
+PAY
+PAID
+HARPS
+Enterprise Tooling (Disney Internal Facing)
+External Tooling (Customer Facing)
+
+50
+Existing Internal Content Selection
+
+51
+Existing Internal Content Selection
+
+52
+Externalizing Content Selection
+Packages will unlock premium content bundles directly in DCM.
+Expands advertiser choice with curated collections (sports, seasonal, etc…).
+Allows advertisers to have a complete glimpse into our inventory
+More visual and easier to interact with
+
+53
+Externalizing Content Selection
+Packages will unlock premium content bundles directly in DCM.
+Expands advertiser choice with curated collections (sports, seasonal, etc…).
+Allows advertisers to have a complete glimpse into our inventory
+More visual and easier to interact with
+
+54
+PITCH
+PLAN
+TRAFFIC
+Sales Channels
+CRM
+Audience Forecasting
+Planning & OMS
+Campaign Mgmt.
+Ad Decisioning
+Direct Sold
+Self-Service
+Programmatic
+Inventory
+Forecasting
+Platform
+(IFP)
+Order
+Management
+System
+(Atlas)
+Mission
+Control
+Ad Server
+Measurement
+Reporting
+Data
+Operational Data Store (ODS)
+Revenue, Billing
+PAY
+HARPS
+PAID
+Enterprise Tooling (Disney Internal Facing)
+External Tooling (Customer Facing)
+
+55
+PITCH
+PLAN
+TRAFFIC
+Sales Channels
+CRM
+Audience Forecasting
+Planning & OMS
+Campaign Mgmt.
+Ad Decisioning
+Direct Sold
+Self-Service
+Programmatic
+Inventory
+Forecasting
+Platform
+(IFP)
+Order
+Management
+System
+(Atlas)
+Mission
+Control
+Ad Server
+Measurement
+Reporting
+Data
+Operational Data Store (ODS)
+Revenue, Billing
+PAY
+PAID
+HARPS
+Enterprise Tooling (Disney Internal Facing)
+External Tooling (Customer Facing)
+
+56
+Current Internal Process
+
+57
+Interim Internal Redesign (Bringing in-house)
+
+58
+Long Term Externalized Audience Creation
+To close the gap DCM introduces “Curated Audiences”.
+This enables Sellers to curate and push advanced audience segments to Advertisers, expanding targeting capabilities within Self‑Serve.
+Once applied, advertisers can independently reuse these audiences across campaigns enabling scale, efficiency, and long‑term transition toward full self‑service.
+
+
+
+59
+Long Term Externalized Audience Creation
+1P: Sellers use Disney data
+3P: Liveramp and Sellers use external data mapped to Disney data to create audiences
+2P: Advertiser and Seller use advertiser data mapped to Disney data to create audiences
+Boolean: existing 1P and 3P audiences are combined together using AND/OR logic to create a new audience segment.
+
+60
+Long Term Externalized Audience Creation
+
+61
+Long Term Externalized Audience Creation
+
+62
+PITCH
+PLAN
+TRAFFIC
+Sales Channels
+CRM
+Audience Forecasting
+Planning & OMS
+Campaign Mgmt.
+Ad Decisioning
+Direct Sold
+Self-Service
+Programmatic
+Inventory
+Forecasting
+Platform
+(IFP)
+Order
+Mgmt
+System
+(Atlas)
+Mission
+Control
+Ad Server
+Measurement
+Reporting
+Data
+Operational Data Store (ODS)
+Revenue, Billing
+PAY
+PAID
+HARPS
+Enterprise Tooling (Disney Internal Facing)
+External Tooling (Customer Facing)
+DXC
+
+63
+Competition’s Ad Creation Tools
+Most major streaming platforms lack self-serve, web-based ad creation tools. There is a gap for true creativity and customization in interactive ads.
+
+Our competitors have interactive ads, but their means of creation, customization, and delivery fall short.
+
+Choice+
+Video+
+Interactive+
+Pause+
+Accelerate Deployment: Minimize Friction, Lower Costs, and Speed Time to Market
+Streamline Approvals with External Feedback: Test and Preview Ad Creatives Seamlessly
+DXC Composer 
+Testing Platform
+Formats w/ Interactivity
+CREATE & ASSEMBLE
+TEST & PREVIEW
+DEPLOY & MEASURE
+Unlock Premium Ad Experiences for Advertisers at Scale
+64
+
+65
+Externalizing Ad Creation Tools
+Unifying creation and buying unlocks new value.
+
+Integrating DXC creation into DCM bridges the gap between building and buying.
+
+How it ladders into OKRs:
+Be CTV's Highest Yield Platform - expands premium ad opportunities.
+Be the Easiest Buying Platform to Transact With - simplify workflows through unified creation and buying.
+Generate Greater Value for Advertisers - enable self-serve access and faster campaign setup.
+
+Disney Experience Composer(Creation)
+Disney Campaign Manager
+(Buying)
+Unified Advertiser Experience Externalized via DCM
+
+66
+Externalizing Ad Creation Tools
+DXC = Disney eXperience Composer
+Enable all advertisers to access premium ad formats directly in DCM by removing operational overhead and leveraging DXC for self-serve ad creation.
+
+67
+Externalizing Ad Creation Tools
+Ad formats are organized by campaign objective to help advertisers explore available options, understand requirements and eligibility, and decide whether a format is right for their campaign. 
+
+68
+Externalizing Ad Creation Tools
+Ad creation happens directly within campaign setup, allowing advertisers to upload assets, customize creative, and preview in real time without leaving the flow.
+
+69
+Externalizing Ad Creation Tools
+After creation, ads and associated assets are surfaced within the campaign flow for review, validation, and iteration before launch.
+
+70
+Externalizing Ad Creation Tools
+Users can preview their rendered experience (in all forms: interactive, second screen, etc.) Public link that can be sent to advertisers for review.
+
+71
+Externalizing Ad Creation Tools
+Users can preview their rendered experience (in all forms: interactive, second screen, etc.) Public link that can be sent to advertisers for review.
+
+Executive Leadership OKRs
+Be CTV's Highest Yield Platform
+Be the Easiest Buying Platform to Transact With
+Generate the Industry's Greatest Value for Advertisers
+Generate 5% revenue lift in Q1 FY26
+Reduce avg time to launch a campaign from request to activation by 20% in Q1 FY26
+Actuals as of Fri, Feb 13
+Actuals as of Fri, Feb 13
+Actuals as of Fri, Feb 13
+High CPM + sustained demand = high performance
++4.1% lift
+52% reduction
+$45+ cpm
+72
+
+73
+Why Netflix?
+I’ve spent years scaling complex platforms at Disney. I’m excited to apply my systems thinking in a real-time, consumer-facing ecosystem.
+My super power is upleveling design craft and quality.
+I know how to translate vision into roadmaps, rituals, and shipped outcomes.
+I’ve grown designers into leaders and hand-selected teams that consistently raise the bar.
+This feels like the right inflection point for me to expand my impact beyond Disney.
+
+Thank You!
+
+75

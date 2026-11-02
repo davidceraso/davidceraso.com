@@ -5,63 +5,41 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>CV – David Ceraso</title>
-    <meta name="description" content="Curriculum vitae of David Ceraso – Design Manager at The Walt Disney Company.">
+    <meta name="description" content="Curriculum vitae of David Ceraso – Product Design Manager at The Walt Disney Company.">
     <link rel="icon" href="/favicon.svg" type="image/svg+xml">
+    <link rel="stylesheet" href="/CV/cv-public.css?v=6">
+    <link rel="stylesheet" href="/assets/site-grid-overlay.css">
     <style>
-        * {
-            margin: 0;
-            padding: 0;
-            box-sizing: border-box;
-        }
-
-        body {
-            background: #ffffff;
-            font-family: 'Courier New', monospace;
-        }
-
-        .pdf-container {
-            position: fixed;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-        }
-
-        .pdf-container iframe {
-            width: 100%;
-            height: 100%;
-            border: none;
-        }
-
-        .back-link {
-            position: fixed;
-            top: 16px;
-            left: 16px;
-            z-index: 1000;
-            background: #ffffff;
-            color: #0000FF;
-            text-decoration: none;
-            font-size: 14px;
-            padding: 8px 12px;
-            border: 1px solid #0000FF;
-            transition: all 0.2s ease;
-        }
-
-        .back-link:hover {
-            background: #0000FF;
-            color: #ffffff;
-        }
-
-        ::selection {
-            background: rgba(0, 0, 255, 0.3);
-            color: #0000FF;
+        .cv-back,
+        .cv-public-root {
+            position: relative;
+            z-index: 2;
         }
     </style>
 </head>
 <body>
-    <a href="/resources/" class="back-link">← Back</a>
-    <div class="pdf-container">
-        <iframe src="/CV/DavidCeraso_CV.pdf"></iframe>
-    </div>
+    <div id="grid-overlay" aria-hidden="true"></div>
+    <a href="/resources/" class="cv-back">← Back</a>
+    <main id="cv-root" class="cv-public-root" aria-busy="true">Loading…</main>
+    <script src="/CV/cv-export.js?v=36" defer></script>
+    <script>
+        fetch('/CV/cv-content.html')
+            .then((response) => {
+                if (!response.ok) throw new Error('failed');
+                return response.text();
+            })
+            .then((html) => {
+                const root = document.getElementById('cv-root');
+                root.innerHTML = html;
+                root.removeAttribute('aria-busy');
+                document.dispatchEvent(new CustomEvent('cv-letter-fit', { detail: { root } }));
+            })
+            .catch(() => {
+                document.getElementById('cv-root').innerHTML =
+                    '<p>Could not load CV. <a href="/CV/DavidCeraso_CV.pdf">Download PDF</a>.</p>';
+                document.getElementById('cv-root').removeAttribute('aria-busy');
+            });
+    </script>
+    <script src="/assets/site-grid-overlay.js" defer></script>
 </body>
 </html>

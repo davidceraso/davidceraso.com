@@ -1,0 +1,448 @@
+/* Matches DavidCeraso_CV.pdf: Courier Prime, #0000FF, two-column letter layout */
+
+@import url('https://fonts.googleapis.com/css2?family=Courier+Prime:ital,wght@0,400;0,700;1,400&display=swap');
+
+@font-face {
+    font-family: 'Replica Pro';
+    src: url('/Replica/ReplicaProBold.otf') format('opentype');
+    font-weight: 700;
+    font-style: normal;
+    font-display: swap;
+}
+
+:root {
+    --cv-blue: #0000ff;
+    --cv-col-left: 28%;
+    --cv-col-gap: 3%;
+    /* US Letter 8.5×11 in (@ 72dpi); printable inset matches cv-export.js */
+    --cv-letter-page-w: 612;
+    --cv-letter-page-h: 792;
+    --cv-letter-content-w: 547;
+    --cv-letter-content-h: 727;
+    --cv-print-guide-border: rgba(0, 0, 255, 0.16);
+    --cv-print-guide-fill: rgba(0, 0, 255, 0.025);
+}
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    background: #ffffff;
+    color: var(--cv-blue);
+}
+
+.cv-back {
+    position: fixed;
+    top: 16px;
+    left: 16px;
+    z-index: 2;
+    font-family: 'Courier Prime', 'Courier New', monospace;
+    font-size: 14px;
+    color: var(--cv-blue);
+    text-decoration: none;
+}
+
+.cv-back:hover {
+    opacity: 0.55;
+}
+
+.cv-public-root {
+    padding: 48px 24px 64px;
+}
+
+.cv-sheet {
+    font-family: 'Courier Prime', 'Courier New', monospace;
+    color: var(--cv-blue);
+    width: min(100%, var(--cv-letter-page-w) * 1px);
+    max-width: calc(var(--cv-letter-page-w) * 1px);
+    margin: 0 auto;
+}
+
+/* US Letter page — screen preview matches PDF capture target */
+.cv-letter-page {
+    position: relative;
+    box-sizing: border-box;
+    width: 100%;
+    aspect-ratio: 8.5 / 11;
+    padding: calc(100% * 0.45 / 8.5);
+    border: 1px solid var(--cv-print-guide-border);
+    background: var(--cv-print-guide-fill);
+    font-family: 'Courier Prime', 'Courier New', monospace;
+    font-size: 9px;
+    line-height: 1.38;
+    color: var(--cv-blue);
+    overflow: hidden;
+    display: flex;
+    flex-direction: column;
+}
+
+.cv-letter-page__inner {
+    flex: 1;
+    min-height: 0;
+    min-width: 0;
+    overflow: hidden;
+}
+
+.cv-exporting .cv-letter-page {
+    border-color: transparent;
+    background: #ffffff;
+    overflow: visible;
+}
+
+.cv-exporting .cv-letter-page__inner {
+    overflow: visible;
+}
+
+.cv-letter-page--print {
+    border: none;
+    background: #ffffff;
+}
+
+.cv-top {
+    display: grid;
+    grid-template-columns: var(--cv-col-left) 1fr;
+    column-gap: var(--cv-col-gap);
+    margin-bottom: 14px;
+}
+
+.cv-columns {
+    display: grid;
+    grid-template-columns: var(--cv-col-left) 1fr;
+    column-gap: var(--cv-col-gap);
+    align-items: start;
+}
+
+.cv-letter-page .cv-name,
+.cv-letter-page .cv-section-title {
+    font-family: 'Replica Pro', system-ui, sans-serif;
+    font-size: 1.556em;
+    font-weight: 700;
+    line-height: 1.25;
+}
+
+.cv-name,
+.cv-section-title {
+    font-family: 'Replica Pro', system-ui, sans-serif;
+    font-size: 14px;
+    font-weight: 700;
+    line-height: 1.25;
+}
+
+.cv-name {
+    margin-bottom: 4px;
+    font-weight: 700;
+}
+
+.cv-name strong {
+    font-family: inherit;
+    font-weight: 700;
+}
+
+.cv-letter-page .cv-body,
+.cv-letter-page .cv-job-meta,
+.cv-letter-page .cv-subhead,
+.cv-letter-page .cv-lines li {
+    font-size: 1em;
+    font-weight: 400;
+}
+
+.cv-letter-page .cv-tagline {
+    font-size: 1em;
+    font-weight: 400;
+}
+
+.cv-letter-page .cv-job-title {
+    font-size: 1em;
+    font-weight: 700;
+}
+
+.cv-body,
+.cv-job-meta,
+.cv-subhead,
+.cv-lines li,
+.cv-pdf-link {
+    font-size: 9px;
+    font-weight: 400;
+}
+
+.cv-tagline {
+    font-size: 9px;
+    font-weight: 400;
+    margin-bottom: 0;
+}
+
+.cv-body {
+    margin-top: 4px;
+}
+
+.cv-block + .cv-block {
+    margin-top: 18px;
+}
+
+.cv-section-title {
+    margin-bottom: 6px;
+}
+
+.cv-job-title {
+    font-size: 9px;
+    font-weight: 700;
+    margin-bottom: 2px;
+}
+
+.cv-job-meta {
+    margin-bottom: 8px;
+    line-height: 1.35;
+}
+
+.cv-letter-page .cv-job-meta {
+    white-space: nowrap;
+}
+
+.cv-subhead {
+    margin: 8px 0 4px;
+}
+
+.cv-block .cv-role-block:first-of-type .cv-subhead {
+    position: relative;
+    padding-left: 14px;
+}
+
+.cv-block .cv-role-block:first-of-type .cv-subhead::before {
+    content: '+';
+    position: absolute;
+    left: 0;
+}
+
+.cv-block .cv-role-block:first-of-type ul.cv-lines--plus li {
+    padding-left: 28px;
+}
+
+.cv-block .cv-role-block:first-of-type ul.cv-lines--plus li::before {
+    content: '-';
+    left: 14px;
+}
+
+.cv-role-block + .cv-role-block {
+    margin-top: 10px;
+}
+
+.cv-lines {
+    list-style: none;
+}
+
+.cv-lines li {
+    position: relative;
+    padding-left: 14px;
+    margin-bottom: 2px;
+}
+
+/* Left column lists: match Contact row rhythm (em scales with letter-page fit). */
+.cv-letter-page .cv-col--left > .cv-block .cv-lines > li:not(:last-child) {
+    margin-bottom: 0.667em;
+}
+
+.cv-letter-page .cv-col--left > .cv-block:nth-of-type(2) .cv-lines > li {
+    line-height: 1.45;
+}
+
+.cv-lines--hash li::before,
+.cv-lines--plus li::before,
+.cv-lines--slash li::before {
+    position: absolute;
+    left: 0;
+    font-weight: 400;
+}
+
+.cv-lines--hash li::before {
+    content: '#';
+}
+
+.cv-lines--plus li::before {
+    content: '+';
+}
+
+.cv-lines--slash li::before {
+    content: '/';
+}
+
+.cv-lines--plain li {
+    padding-left: 0;
+}
+
+.cv-lines--plus-first-only li:not(:first-child) {
+    padding-left: 14px;
+}
+
+.cv-lines--plus-first-only li:not(:first-child)::before {
+    content: none;
+}
+
+/* Education lines: same rhythm as .cv-body (line-height only, no list gaps). */
+.cv-letter-page .cv-body,
+.cv-letter-page .cv-col--left > .cv-block .cv-lines.cv-lines--plus-first-only > li {
+    line-height: 1.38;
+}
+
+.cv-letter-page .cv-col--left > .cv-block .cv-lines.cv-lines--plus-first-only > li {
+    margin-bottom: 0;
+}
+
+.cv-lines a {
+    color: inherit;
+    text-decoration: none;
+}
+
+.cv-lines a:hover {
+    opacity: 0.55;
+}
+
+.cv-pdf-link {
+    margin-top: 20px;
+    font-size: 9px;
+}
+
+.cv-pdf-link a {
+    color: var(--cv-blue);
+    text-decoration: underline;
+    text-underline-offset: 2px;
+}
+
+.cv-pdf-link a:hover {
+    opacity: 0.55;
+}
+
+::selection {
+    background: rgba(0, 0, 255, 0.3);
+    color: var(--cv-blue);
+}
+
+.cv-export-overlay {
+    position: fixed;
+    inset: 0;
+    z-index: 2147483645;
+    background: #ffffff;
+}
+
+.cv-export-stage {
+    position: fixed;
+    left: 0;
+    top: 0;
+    z-index: 2147483646;
+    pointer-events: none;
+    overflow: hidden;
+    background: #ffffff;
+}
+
+.cv-export-stage--wysiwyg {
+    overflow: visible;
+    background: transparent;
+}
+
+.cv-letter-page--export-capture {
+    box-sizing: border-box;
+    width: calc(var(--cv-letter-page-w) * 1px) !important;
+    height: calc(var(--cv-letter-page-h) * 1px) !important;
+    max-width: none !important;
+    aspect-ratio: auto !important;
+    border: none !important;
+    background: #ffffff !important;
+    overflow: hidden !important;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+    text-rendering: geometricPrecision;
+}
+
+.cv-letter-page--export-capture .cv-letter-page__inner {
+    overflow: hidden;
+}
+
+.cv-export-frame {
+    overflow: hidden;
+    background: #ffffff;
+    box-sizing: border-box;
+}
+
+.cv-export-print-frame {
+    position: fixed;
+    right: 0;
+    bottom: 0;
+    width: 0;
+    height: 0;
+    border: 0;
+    opacity: 0;
+    pointer-events: none;
+}
+
+.cv-letter-page .cv-top,
+.cv-letter-page .cv-columns {
+    min-width: 0;
+}
+
+.cv-letter-page .cv-col {
+    min-width: 0;
+}
+
+@page {
+    size: letter;
+    margin: 0;
+}
+
+@media print {
+    html,
+    body {
+        margin: 0;
+        padding: 0;
+        background: #ffffff;
+    }
+
+    .cv-back,
+    .cv-pdf-link {
+        display: none !important;
+    }
+
+    .cv-public-root {
+        padding: 0;
+    }
+
+    body * {
+        visibility: hidden;
+    }
+
+    .cv-sheet,
+    .cv-sheet *,
+    .cv-sheet--print,
+    .cv-sheet--print *,
+    .cv-letter-page--print,
+    .cv-letter-page--print * {
+        visibility: visible;
+    }
+
+    .cv-sheet {
+        position: absolute;
+        left: 0;
+        top: 0;
+        width: 100%;
+        max-width: 7.6in;
+        margin: 0;
+        font-size: 9px !important;
+        line-height: 1.38;
+    }
+
+    .cv-sheet .cv-name,
+    .cv-sheet .cv-section-title {
+        font-size: 14px !important;
+    }
+
+    .cv-sheet .cv-tagline,
+    .cv-sheet .cv-body,
+    .cv-sheet .cv-job-meta,
+    .cv-sheet .cv-subhead,
+    .cv-sheet .cv-lines li,
+    .cv-sheet .cv-job-title {
+        font-size: 9px !important;
+    }
+}
+

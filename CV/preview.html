@@ -1,0 +1,93 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>CV Preview – David Ceraso</title>
+    <link rel="icon" href="/favicon.svg" type="image/svg+xml">
+    <link rel="stylesheet" href="/CV/cv-public.css?v=6">
+    <style>
+        body.cv-preview-root {
+            margin: 0;
+            background: #f2f2f2;
+        }
+
+        .cv-preview-root__loading {
+            padding: 24px;
+            font-family: 'Courier Prime', 'Courier New', monospace;
+            font-size: 14px;
+            color: #0000ff;
+        }
+
+        .cv-preview-root__toolbar {
+            display: flex;
+            align-items: center;
+            gap: 16px;
+            padding: 12px 16px;
+            background: #ffffff;
+            border-bottom: 1px solid rgba(0, 0, 255, 0.12);
+            font-family: 'Courier Prime', 'Courier New', monospace;
+            font-size: 13px;
+        }
+
+        .cv-preview-root__toolbar a {
+            color: #0000ff;
+        }
+
+        #cv-preview-frame {
+            display: block;
+            width: 100%;
+            height: calc(100vh - 49px);
+            border: 0;
+            background: #ffffff;
+        }
+
+        .cv-preview-root__source {
+            position: fixed;
+            left: 0;
+            top: 0;
+            width: 612px;
+            opacity: 0;
+            pointer-events: none;
+            z-index: -1;
+        }
+    </style>
+</head>
+<body class="cv-preview-root">
+    <div class="cv-preview-root__toolbar">
+        <a href="/portfolio/">← Portfolio</a>
+        <span id="cv-preview-status">Building PDF preview…</span>
+    </div>
+    <iframe id="cv-preview-frame" title="David Ceraso CV PDF preview" hidden></iframe>
+    <div id="cv-preview-source" class="cv-preview-root__source" aria-hidden="true"></div>
+    <script src="/CV/cv-export.js?v=27"></script>
+    <script>
+        (async function () {
+            const source = document.getElementById('cv-preview-source');
+            const status = document.getElementById('cv-preview-status');
+            const frame = document.getElementById('cv-preview-frame');
+
+            try {
+                const response = await fetch('/CV/cv-content.html', { credentials: 'same-origin' });
+                if (!response.ok) {
+                    throw new Error('Could not load CV content');
+                }
+                source.innerHTML = await response.text();
+                document.dispatchEvent(new CustomEvent('cv-letter-fit', { detail: { root: source } }));
+
+                const letterPage = source.querySelector('[data-cv-letter-page]');
+                if (!letterPage || typeof window.cvBuildPdfBlob !== 'function') {
+                    throw new Error('CV preview is not ready');
+                }
+
+                const blob = await window.cvBuildPdfBlob(letterPage);
+                frame.src = URL.createObjectURL(blob);
+                frame.hidden = false;
+                status.textContent = 'Preview ready — use the viewer to save or print.';
+            } catch (error) {
+                status.textContent = 'Preview failed: ' + (error && error.message ? error.message : 'Unknown error');
+            }
+        })();
+    </script>
+</body>
+</html>

@@ -23,6 +23,7 @@
     <title>Resources – David Ceraso</title>
     <link rel="canonical" href="https://davidceraso.com/resources/">
     <link rel="icon" href="/favicon.svg" type="image/svg+xml">
+    <link rel="stylesheet" href="/assets/site-grid-overlay.css">
     
     <style>
         * {
@@ -41,6 +42,8 @@
         }
 
         .container {
+            position: relative;
+            z-index: 2;
             max-width: 1200px;
             margin: 0 auto;
             padding: 48px 24px;
@@ -180,6 +183,7 @@
     </style>
 </head>
 <body>
+    <div id="grid-overlay" aria-hidden="true"></div>
     <div class="container">
         <header>
             <a href="/" class="back-link">← David Ceraso</a>
@@ -205,5 +209,6 @@
             </div>
         </main>
     </div>
+    <script src="/assets/site-grid-overlay.js" defer></script>
 </body>
 </html>
