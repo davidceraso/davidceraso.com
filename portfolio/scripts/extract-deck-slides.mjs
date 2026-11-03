@@ -1,7 +1,7 @@
 /**
  * Render selected deck PDF pages to PNG for the DCM case study.
- * Requires: deck.pdf in case-studies/assets/disney-campaign-manager/
- * Run after: bash case-studies/scripts/import-deck-pdf.sh
+ * Requires: deck.pdf in portfolio/assets/disney-campaign-manager/
+ * Run after: bash portfolio/scripts/import-deck-pdf.sh
  */
 import { spawnSync } from 'node:child_process';
 import { existsSync, mkdirSync } from 'node:fs';
@@ -59,7 +59,7 @@ doc.close()
 
 function main() {
   if (!existsSync(PDF)) {
-    console.error(`Missing ${PDF}. Run: bash case-studies/scripts/import-deck-pdf.sh`);
+    console.error(`Missing ${PDF}. Run: bash portfolio/scripts/import-deck-pdf.sh`);
     process.exit(1);
   }
   mkdirSync(OUT_DIR, { recursive: true });

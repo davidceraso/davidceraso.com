@@ -45,11 +45,11 @@ const browser = await chromium.launch();
 const page = await browser.newPage();
 
 for (const [url, slug] of [
-  ['http://localhost:8000/case-studies/', 'case-studies'],
+  ['http://localhost:8000/portfolio/', 'portfolio'],
   ['http://localhost:8000/CV/', 'cv'],
 ]) {
   await page.goto(url, { waitUntil: 'networkidle' });
-  if (slug === 'case-studies') {
+  if (slug === 'portfolio') {
     await page.evaluate(() => {
       sessionStorage.setItem('case_studies_auth', 'true');
       sessionStorage.setItem('portfolio_project', 'cv');

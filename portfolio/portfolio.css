@@ -218,6 +218,10 @@ body.authenticated {
     transform: rotate(-45deg);
 }
 
+.project-menu.is-landing .project-menu-list {
+    margin-left: 0;
+}
+
 .project-menu-list {
     list-style: none;
     display: flex;
@@ -286,6 +290,10 @@ body.authenticated {
     max-width: var(--case-study-content-width);
     margin-left: var(--grid-pad-x);
     padding: calc(var(--grid-pad-y) + 44px) 0 48px;
+}
+
+.portfolio-landing__section + .portfolio-landing__section {
+    margin-top: 40px;
 }
 
 .portfolio-landing__list {

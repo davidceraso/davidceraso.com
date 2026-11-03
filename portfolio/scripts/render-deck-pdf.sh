@@ -2,8 +2,8 @@
 # Render DCM case-study pages from deck.pdf (must already be in repo).
 set -euo pipefail
 ROOT="$(cd "$(dirname "$0")/../.." && pwd)"
-DEST="$ROOT/case-studies/assets/disney-campaign-manager/deck.pdf"
-OUT="$ROOT/case-studies/assets/disney-campaign-manager/slides"
+DEST="$ROOT/portfolio/assets/disney-campaign-manager/deck.pdf"
+OUT="$ROOT/portfolio/assets/disney-campaign-manager/slides"
 PDFTOPPM="$(command -v pdftoppm || true)"
 [[ -x /opt/homebrew/bin/pdftoppm ]] && PDFTOPPM=/opt/homebrew/bin/pdftoppm
 

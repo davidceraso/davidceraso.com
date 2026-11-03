@@ -3,8 +3,8 @@
 set -euo pipefail
 ROOT="$(cd "$(dirname "$0")/../.." && pwd)"
 SRC="${1:-$HOME/Library/CloudStorage/OneDrive-TheWaltDisneyCompany/Desktop/David Ceraso _ Neha Singh.pdf}"
-DEST="$ROOT/case-studies/assets/disney-campaign-manager/deck.pdf"
-OUT="$ROOT/case-studies/assets/disney-campaign-manager/slides"
+DEST="$ROOT/portfolio/assets/disney-campaign-manager/deck.pdf"
+OUT="$ROOT/portfolio/assets/disney-campaign-manager/slides"
 mkdir -p "$(dirname "$DEST")" "$OUT"
 
 if [[ ! -f "$SRC" ]]; then

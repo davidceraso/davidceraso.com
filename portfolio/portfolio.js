@@ -4,7 +4,7 @@
 const BOOT = window.PORTFOLIO_BOOT || { mode: 'landing' };
 const IS_LANDING = BOOT.mode === 'landing';
 const CURRENT_PROJECT_ID = BOOT.projectId || null;
-const PORTFOLIO_ROOT = '/case-studies/';
+const PORTFOLIO_ROOT = '/portfolio/';
 
 const PASSWORD_HASH = 'fcde242ae1f8e2afc85a96d';
 const ENCRYPTED_PATH = 'AwQRARMLSxFWFFAAVRNTEEwFX1AWVxdNFQgW';
@@ -148,6 +148,9 @@ function decryptPath(password) {
 }
 
 function renderProjectNav() {
+    if (!projectMenuList) {
+        return;
+    }
     const homeItem =
         '<li><a class="project-menu-link' +
         (IS_LANDING ? ' is-active' : '') +
@@ -155,7 +158,7 @@ function renderProjectNav() {
         PORTFOLIO_ROOT +
         '"' +
         (IS_LANDING ? ' aria-current="page"' : '') +
-        '>All Projects</a></li>';
+        '>Index</a></li>';
 
     const projectItems = PROJECTS.map((project) => {
         const isActive = !IS_LANDING && project.id === CURRENT_PROJECT_ID;
@@ -186,21 +189,38 @@ function postRenderProject(projectId) {
     }
 }
 
+function landingProjectLinks(projects) {
+    return (
+        '<ul class="portfolio-landing__list">' +
+        projects
+            .map(
+                (project) =>
+                    '<li><a class="project-menu-link" href="' +
+                    projectPageUrl(project.id) +
+                    '">' +
+                    project.label +
+                    '</a></li>'
+            )
+            .join('') +
+        '</ul>'
+    );
+}
+
 function renderLanding() {
+    const caseStudies = PROJECTS.filter((project) => project.id !== 'cv');
+    const extras = PROJECTS.filter((project) => project.id === 'cv');
+
     portfolio.innerHTML =
         '<div class="portfolio-landing">' +
-        '<h2 class="portfolio-landing__title">' + PORTFOLIO_TITLE_BASE + '</h2>' +
-        '<ul class="portfolio-landing__list">' +
-        PROJECTS.map(
-            (project) =>
-                '<li><a class="project-menu-link" href="' +
-                projectPageUrl(project.id) +
-                '">' +
-                project.label +
-                '</a></li>'
-        ).join('') +
-        '</ul></div>';
-    portfolioTitle.textContent = PORTFOLIO_TITLE_BASE;
+        '<section class="portfolio-landing__section">' +
+        '<h2 class="portfolio-landing__title">Case Studies</h2>' +
+        landingProjectLinks(caseStudies) +
+        '</section>' +
+        '<section class="portfolio-landing__section">' +
+        '<h2 class="portfolio-landing__title">Artifacts</h2>' +
+        landingProjectLinks(extras) +
+        '</section></div>';
+    portfolioTitle.textContent = 'David Ceraso — Index';
 }
 
 function renderProjectPage() {
@@ -208,7 +228,7 @@ function renderProjectPage() {
     let content = PROJECT_CONTENT[projectId] || '';
     if (!content && projectId !== 'cv') {
         content =
-            '<article class="case-study"><p class="case-study__lede">This project did not load. Ensure <code>case-studies/project-content.js</code> is deployed, then hard-refresh.</p></article>';
+            '<article class="case-study"><p class="case-study__lede">This project did not load. Ensure <code>portfolio/project-content.js</code> is deployed, then hard-refresh.</p></article>';
     }
     portfolio.innerHTML =
         '<section class="project-panel is-active" id="project-' +
@@ -219,18 +239,16 @@ function renderProjectPage() {
         content +
         '</section>';
     const project = PROJECTS.find((entry) => entry.id === projectId);
-    portfolioTitle.textContent = project
-        ? 'David Ceraso — Case Studies: ' + project.label
-        : PORTFOLIO_TITLE_BASE;
+    portfolioTitle.textContent = project ? 'David Ceraso — ' + project.label : PORTFOLIO_TITLE_BASE;
     postRenderProject(projectId);
 }
 
 function renderPortfolioContent() {
-    renderProjectNav();
     if (IS_LANDING) {
         renderLanding();
         return;
     }
+    renderProjectNav();
     if (!CURRENT_PROJECT_ID || !PROJECTS.some((project) => project.id === CURRENT_PROJECT_ID)) {
         portfolio.innerHTML = '<p class="case-study__lede">Unknown project.</p>';
         return;
@@ -340,16 +358,29 @@ window.addEventListener('resize', () => {
 });
 
 function openProjectMenu() {
-    projectMenuToggle.setAttribute('aria-expanded', 'true');
+    if (!projectMenuList) {
+        return;
+    }
+    if (projectMenuToggle) {
+        projectMenuToggle.setAttribute('aria-expanded', 'true');
+    }
     projectMenuList.hidden = false;
 }
 
 function closeProjectMenu() {
-    projectMenuToggle.setAttribute('aria-expanded', 'false');
+    if (!projectMenuList || IS_LANDING) {
+        return;
+    }
+    if (projectMenuToggle) {
+        projectMenuToggle.setAttribute('aria-expanded', 'false');
+    }
     projectMenuList.hidden = true;
 }
 
 function toggleProjectMenu() {
+    if (!projectMenuList) {
+        return;
+    }
     if (projectMenuList.hidden) {
         openProjectMenu();
     } else {
@@ -363,8 +394,10 @@ async function showPortfolio() {
     document.body.classList.add('authenticated');
     portfolio.hidden = false;
     portfolio.classList.add('is-visible');
-    projectMenu.hidden = false;
-    projectMenu.classList.add('is-visible');
+    if (projectMenu) {
+        projectMenu.hidden = false;
+        projectMenu.classList.add('is-visible');
+    }
     portfolioTitle.classList.add('is-visible');
 
     if (IS_LANDING) {
@@ -379,10 +412,12 @@ async function showPortfolio() {
     renderPortfolioContent();
 }
 
-projectMenuToggle.addEventListener('click', toggleProjectMenu);
+if (projectMenuToggle) {
+    projectMenuToggle.addEventListener('click', toggleProjectMenu);
+}
 
 document.addEventListener('click', (event) => {
-    if (!projectMenu.classList.contains('is-visible')) {
+    if (!projectMenu || !projectMenu.classList.contains('is-visible')) {
         return;
     }
 

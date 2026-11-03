@@ -1,11 +1,44 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
+    <script defer src="https://cloud.umami.is/script.js" data-website-id="38cb683a-a04f-48ca-8747-b9faac3a13dc"></script>
     <meta charset="UTF-8">
-    <title>Redirecting…</title>
-    <link rel="canonical" href="/case-studies/disney-campaign-manager/">
-    <meta http-equiv="refresh" content="0;url=/case-studies/disney-campaign-manager/">
-    <script>location.replace('/case-studies/disney-campaign-manager/');</script>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="Cache-Control" content="no-cache, no-store, must-revalidate">
+    <title>Disney Campaign Manager – David Ceraso — Case Studies</title>
+    <meta name="robots" content="noindex, nofollow">
+    <link rel="icon" href="/favicon.svg" type="image/svg+xml">
+    <base href="/portfolio/">
+    <link rel="stylesheet" href="/CV/cv-public.css?v=6">
+    <link rel="stylesheet" href="/portfolio/portfolio.css?v=22">
 </head>
-<body></body>
+<body>
+    <div id="grid-overlay" aria-hidden="true"></div>
+
+    <form class="password-form" id="passwordForm">
+        <div class="password-row">
+            <input type="password" id="passwordInput" placeholder="Enter password" autocomplete="off" autofocus>
+            <button type="submit">Submit</button>
+        </div>
+        <p class="error" id="passwordError">Incorrect password. Please try again.</p>
+    </form>
+
+    <nav class="project-menu" id="projectMenu" hidden aria-label="Projects">
+        <button type="button" class="project-menu-toggle" id="projectMenuToggle" aria-expanded="false" aria-controls="projectMenuList" aria-label="Projects">
+            <span class="project-menu-icon" aria-hidden="true">
+                <span></span>
+                <span></span>
+                <span></span>
+            </span>
+        </button>
+        <ul class="project-menu-list" id="projectMenuList" hidden></ul>
+    </nav>
+
+    <p class="portfolio-title" id="portfolioTitle">David Ceraso — Case Studies</p>
+
+    <main id="portfolio" hidden></main>
+
+    <script>window.PORTFOLIO_BOOT = { mode: 'project', projectId: 'disney-campaign-manager' };</script>
+    <script src="/portfolio/portfolio.js?v=33"></script>
+</body>
 </html>
