@@ -189,13 +189,150 @@ function postRenderProject(projectId) {
     }
 }
 
+const gridArtifact = document.getElementById('grid-artifact');
+const gridArtifactCanvas = document.getElementById('gridArtifactCanvas');
+const gridArtifactVideo = document.getElementById('gridArtifactVideo');
+
+let gridArtifactAscii = null;
+let gridArtifactAsciiLoader = null;
+const GRID_ASCII_BUILD = 7;
+let gridArtifactAsciiBuild = 0;
+
+function playGridArtifactVideo() {
+    if (!gridArtifactVideo) {
+        return;
+    }
+    gridArtifactVideo.muted = true;
+    gridArtifactVideo.playsInline = true;
+    const playPromise = gridArtifactVideo.play();
+    if (playPromise) {
+        playPromise.catch(() => {});
+    }
+}
+
+function teardownGridArtifactAscii() {
+    if (gridArtifactAscii) {
+        gridArtifactAscii.destroy();
+        gridArtifactAscii = null;
+    }
+}
+
+async function ensureGridArtifactAscii(width, height) {
+    if (!gridArtifactCanvas || !gridArtifactVideo) {
+        return;
+    }
+
+    if (gridArtifactAscii && gridArtifactAsciiBuild !== GRID_ASCII_BUILD) {
+        teardownGridArtifactAscii();
+        gridArtifactAsciiLoader = null;
+    }
+
+    if (!gridArtifactAsciiLoader) {
+        gridArtifactAsciiLoader = import('./grid-artifact-ascii.mjs?v=7');
+    }
+
+    const module = await gridArtifactAsciiLoader;
+    if (!gridArtifactAscii) {
+        gridArtifactAscii = module.mountGridArtifactAscii(gridArtifactCanvas, gridArtifactVideo, {
+            charset: ' .,:;i1tfLCG08@',
+            cellSize: 5,
+            ink: '#0000ff',
+            background: '#ffffff',
+            contrast: 2.2,
+            brightness: 0.06,
+            gamma: 0.68
+        });
+        gridArtifactAsciiBuild = GRID_ASCII_BUILD;
+    }
+    gridArtifactAscii.resize(width, height);
+    playGridArtifactVideo();
+}
+
+function getGridLayoutMetrics() {
+    const width = window.innerWidth;
+    const height = window.innerHeight;
+    const rootStyles = getComputedStyle(document.documentElement);
+    const padding = parseFloat(rootStyles.getPropertyValue('--grid-pad-x')) || 16;
+    const scaleY = height / 1080;
+    const contentWidth = width - padding * 2;
+    const columnWidth = contentWidth / 12;
+    const horizontalLines = [360 * scaleY, 732 * scaleY];
+    const bandTop = horizontalLines[0];
+    const bandBottom = horizontalLines[1];
+    const bandLeft = padding + columnWidth * 4;
+    const bandWidth = columnWidth * 4;
+    const bandHeight = bandBottom - bandTop;
+    /* Full middle column cell between overlay lines 360–732. */
+    const middleSpot = {
+        left: bandLeft,
+        top: bandTop,
+        width: bandWidth,
+        height: bandHeight
+    };
+    return {
+        width,
+        height,
+        padding,
+        scaleY,
+        columnWidth,
+        contentWidth,
+        verticalPositions: [0, 4, 8, 12].map((column) => padding + column * columnWidth),
+        horizontalLines,
+        rowBands: [
+            [0, 348 * scaleY],
+            [372 * scaleY, 720 * scaleY],
+            [744 * scaleY, height]
+        ],
+        middleSpot
+    };
+}
+
+function getGridMiddleCellRect() {
+    return getGridLayoutMetrics().middleSpot;
+}
+
+function hideGridArtifact() {
+    if (!gridArtifact) {
+        return;
+    }
+    gridArtifact.hidden = true;
+    teardownGridArtifactAscii();
+    if (gridArtifactVideo) {
+        gridArtifactVideo.pause();
+    }
+}
+
+function syncGridArtifact() {
+    if (!IS_LANDING || !gridArtifact) {
+        hideGridArtifact();
+        return;
+    }
+
+    const cell = getGridMiddleCellRect();
+    if (!cell || cell.width < 8 || cell.height < 8) {
+        hideGridArtifact();
+        return;
+    }
+
+    gridArtifact.hidden = false;
+    gridArtifact.style.left = Math.round(cell.left) + 'px';
+    gridArtifact.style.top = Math.round(cell.top) + 'px';
+    gridArtifact.style.width = Math.round(cell.width) + 'px';
+    gridArtifact.style.height = Math.round(cell.height) + 'px';
+    ensureGridArtifactAscii(Math.round(cell.width), Math.round(cell.height)).catch((error) => {
+        console.error('[portfolio] Grid ASCII mount failed.', error);
+    });
+}
+
 function landingProjectLinks(projects) {
     return (
         '<ul class="portfolio-landing__list">' +
         projects
             .map(
                 (project) =>
-                    '<li><a class="project-menu-link" href="' +
+                    '<li><a class="project-menu-link" data-project-id="' +
+                    project.id +
+                    '" href="' +
                     projectPageUrl(project.id) +
                     '">' +
                     project.label +
@@ -210,20 +347,22 @@ function renderLanding() {
     const caseStudies = PROJECTS.filter((project) => project.id !== 'cv');
     const extras = PROJECTS.filter((project) => project.id === 'cv');
 
+    portfolio.classList.add('is-landing-index');
     portfolio.innerHTML =
-        '<div class="portfolio-landing">' +
-        '<section class="portfolio-landing__section">' +
-        '<h2 class="portfolio-landing__title">Case Studies</h2>' +
+        '<div class="portfolio-landing" data-landing-region="nav">' +
+        '<section id="portfolio-case-studies" class="portfolio-landing__section" data-landing-region="case-studies" aria-labelledby="portfolio-case-studies-heading">' +
+        '<h2 id="portfolio-case-studies-heading" class="portfolio-landing__title">Case Studies</h2>' +
         landingProjectLinks(caseStudies) +
         '</section>' +
-        '<section class="portfolio-landing__section">' +
-        '<h2 class="portfolio-landing__title">Artifacts</h2>' +
+        '<section id="portfolio-artifacts" class="portfolio-landing__section" data-landing-region="artifacts" aria-labelledby="portfolio-artifacts-heading">' +
+        '<h2 id="portfolio-artifacts-heading" class="portfolio-landing__title">Artifacts</h2>' +
         landingProjectLinks(extras) +
         '</section></div>';
     portfolioTitle.textContent = 'David Ceraso — Index';
 }
 
 function renderProjectPage() {
+    portfolio.classList.remove('is-landing-index');
     const projectId = CURRENT_PROJECT_ID;
     let content = PROJECT_CONTENT[projectId] || '';
     if (!content && projectId !== 'cv') {
@@ -390,20 +529,31 @@ function toggleProjectMenu() {
 
 async function showPortfolio() {
     sessionStorage.setItem('case_studies_auth', 'true');
-    passwordForm.style.display = 'none';
+    if (passwordForm) {
+        passwordForm.style.display = 'none';
+    }
     document.body.classList.add('authenticated');
+    if (!portfolio) {
+        console.error('[portfolio] Missing #portfolio — cannot show content.');
+        return;
+    }
     portfolio.hidden = false;
     portfolio.classList.add('is-visible');
     if (projectMenu) {
         projectMenu.hidden = false;
         projectMenu.classList.add('is-visible');
     }
-    portfolioTitle.classList.add('is-visible');
+    if (portfolioTitle) {
+        portfolioTitle.classList.add('is-visible');
+    }
 
     if (IS_LANDING) {
         renderPortfolioContent();
+        requestAnimationFrame(() => syncGridArtifact());
         return;
     }
+
+    hideGridArtifact();
 
     await ensureProjectContent();
     if (CURRENT_PROJECT_ID === 'cv') {
@@ -432,53 +582,36 @@ document.addEventListener('keydown', (event) => {
     }
 });
 
-passwordForm.addEventListener('submit', async (e) => {
-    e.preventDefault();
-    const password = passwordInput.value;
-    const hash = await hashPassword(password);
-
-    if (hash === PASSWORD_HASH) {
-        const path = decryptPath(password);
-        if (path && path.startsWith('secure/')) {
-            passwordError.style.display = 'none';
-            showPortfolio();
-        } else {
-            passwordError.style.display = 'block';
-            passwordInput.value = '';
-            passwordInput.focus();
+document.addEventListener(
+    'pointerdown',
+    () => {
+        if (IS_LANDING && document.body.classList.contains('authenticated')) {
+            playGridArtifactVideo();
         }
-    } else {
-        passwordError.style.display = 'block';
-        passwordInput.value = '';
-        passwordInput.focus();
+    },
+    { passive: true }
+);
+
+document.addEventListener('visibilitychange', () => {
+    if (!document.hidden && IS_LANDING && document.body.classList.contains('authenticated')) {
+        playGridArtifactVideo();
     }
 });
-
-if (
-    sessionStorage.getItem('case_studies_auth') === 'true' ||
-    sessionStorage.getItem('portfolio_auth') === 'true'
-) {
-    showPortfolio();
-}
 
 const gridOverlay = document.getElementById('grid-overlay');
 
 function drawGridOverlay() {
-    const width = window.innerWidth;
-    const height = window.innerHeight;
-    const rootStyles = getComputedStyle(document.documentElement);
-    const padding = parseFloat(rootStyles.getPropertyValue('--grid-pad-x')) || 16;
-    const scaleY = height / 1080;
-    const contentWidth = width - padding * 2;
-    const columnWidth = contentWidth / 12;
-    const verticalPositions = [0, 4, 8, 12].map((column) => padding + column * columnWidth);
-
-    const rowBands = [
-        [0, 348 * scaleY],
-        [372 * scaleY, 720 * scaleY],
-        [744 * scaleY, height]
-    ];
-    const horizontalLines = [360 * scaleY, 732 * scaleY];
+    if (!gridOverlay) {
+        return;
+    }
+    const layout = getGridLayoutMetrics();
+    const width = layout.width;
+    const height = layout.height;
+    const padding = layout.padding;
+    const columnWidth = layout.columnWidth;
+    const verticalPositions = layout.verticalPositions;
+    const rowBands = layout.rowBands;
+    const horizontalLines = layout.horizontalLines;
     const horizontalInset = 12;
 
     let verticalPaths = '';
@@ -515,14 +648,73 @@ function drawGridOverlay() {
         '</svg>';
 }
 
-drawGridOverlay();
-window.addEventListener('resize', () => {
-    drawGridOverlay();
-    if (CURRENT_PROJECT_ID === 'cv') {
-        document.dispatchEvent(
-            new CustomEvent('cv-letter-fit', { detail: { root: document.getElementById('project-cv') } })
-        );
+let viewportLayoutFrame = 0;
+function onViewportLayoutChange() {
+    if (viewportLayoutFrame) {
+        cancelAnimationFrame(viewportLayoutFrame);
     }
-});
+    viewportLayoutFrame = requestAnimationFrame(() => {
+        viewportLayoutFrame = 0;
+        drawGridOverlay();
+        if (IS_LANDING && document.body.classList.contains('authenticated')) {
+            syncGridArtifact();
+        }
+        if (CURRENT_PROJECT_ID === 'cv') {
+            document.dispatchEvent(
+                new CustomEvent('cv-letter-fit', { detail: { root: document.getElementById('project-cv') } })
+            );
+        }
+    });
+}
+
+drawGridOverlay();
+window.addEventListener('resize', onViewportLayoutChange);
+if (window.visualViewport) {
+    window.visualViewport.addEventListener('resize', onViewportLayoutChange);
+}
+
+if (passwordForm && passwordInput) {
+    passwordForm.addEventListener('submit', async (e) => {
+        e.preventDefault();
+        if (!window.crypto?.subtle) {
+            if (passwordError) {
+                passwordError.textContent = 'Password unlock requires a secure connection (https or localhost).';
+                passwordError.style.display = 'block';
+            }
+            return;
+        }
+        const password = passwordInput.value;
+        const hash = await hashPassword(password);
+
+        if (hash === PASSWORD_HASH) {
+            const path = decryptPath(password);
+            if (path && path.startsWith('secure/')) {
+                if (passwordError) {
+                    passwordError.style.display = 'none';
+                }
+                showPortfolio();
+            } else {
+                if (passwordError) {
+                    passwordError.style.display = 'block';
+                }
+                passwordInput.value = '';
+                passwordInput.focus();
+            }
+        } else {
+            if (passwordError) {
+                passwordError.style.display = 'block';
+            }
+            passwordInput.value = '';
+            passwordInput.focus();
+        }
+    });
+}
+
+if (
+    sessionStorage.getItem('case_studies_auth') === 'true' ||
+    sessionStorage.getItem('portfolio_auth') === 'true'
+) {
+    showPortfolio();
+}
 
 })();
