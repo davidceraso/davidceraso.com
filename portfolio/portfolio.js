@@ -24,7 +24,7 @@ function projectPageUrl(projectId) {
 const CASE_STUDY_FIGURE_MAT_PROJECTS = ['disney-campaign-manager', 'abc-news-design-mcp'];
 
 /** Bump when `project-content.js` case studies change (cache-bust). */
-const PROJECT_CONTENT_REVISION = 63;
+const PROJECT_CONTENT_REVISION = 64;
 const DCM_CONTENT_MARKER = 'Externalizing ad creation (DXC)';
 
 let PROJECT_CONTENT = { cv: '' };
@@ -84,7 +84,7 @@ async function ensureProjectContent() {
 }
 
 /** Bump when `/CV/cv-content.html` changes so portfolio refetches (in-memory + HTTP cache). */
-const CV_CONTENT_REVISION = 10;
+const CV_CONTENT_REVISION = 12;
 
 async function hydrateCvContent() {
     if (PROJECT_CONTENT.cv && PROJECT_CONTENT._cvRevision === CV_CONTENT_REVISION) {

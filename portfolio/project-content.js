@@ -137,9 +137,9 @@ window.PORTFOLIO_PROJECT_CONTENT = {
                 <article class="case-study">
                     <header class="case-study__hero">
                         <h1 class="case-study__title">Disney Campaign Manager Externalization</h1>
-                        <p class="case-study__lede">As design manager, I led the team and design direction for Disney Ad Platforms’ shift from publisher-controlled, direct-sold workflows to an advertiser-controlled growth platform—externalizing buying, reporting, inventory, audiences, and creation into Disney Campaign Manager (DCM) so mid-market advertisers get one destination for planning, transacting, and optimizing CTV spend.</p>
+                        <p class="case-study__lede">As product design lead, I led the team and design direction for Disney Ad Platforms’ shift from publisher-controlled, direct-sold workflows to an advertiser-controlled growth platform—externalizing buying, reporting, inventory, audiences, and creation into Disney Campaign Manager (DCM) so mid-market advertisers get one destination for planning, transacting, and optimizing CTV spend.</p>
                         <dl class="case-study__meta">
-                            <div><dt>Role</dt><dd>Design Manager (lead)</dd></div>
+                            <div><dt>Role</dt><dd>Product design lead</dd></div>
                             <div><dt>Organization</dt><dd>Disney Ad Platforms · The Walt Disney Company · 2021–2026</dd></div>
                             <div><dt>Scope</dt><dd>Self-service · Externalization · Mid-market · DXC</dd></div>
                             <div><dt>North star</dt><dd>Highest-yield CTV · Easiest to transact · Greatest advertiser value</dd></div>
